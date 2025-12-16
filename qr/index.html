@@ -25,4 +25,65 @@
       position: absolute;
       inset: 0;
       display: flex;
-      flex-direction:
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 140px; /* atur posisi teks */
+      text-align: center;
+    }
+
+    .title {
+      font-size: 34px;
+      font-weight: 700;
+      color: #b13a3e;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #8a2d2f;
+      margin-bottom: 18px;
+    }
+
+    .progress {
+      width: 70%;
+      max-width: 280px;
+      height: 8px;
+      background: rgba(177, 58, 62, 0.25);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .bar {
+      width: 0%;
+      height: 100%;
+      background: #b13a3e;
+      animation: load 3s linear forwards;
+    }
+
+    @keyframes load {
+      to { width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overlay">
+    <div class="title">Hold on!</div>
+    <div class="subtitle">
+      You’re being redirected to the UAV video…
+    </div>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress">
+      <div class="bar"></div>
+    </div>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      window.location.href = "go.html?t=" + Date.now();
+    }, 3000);
+  </script>
+</body>
+</html>
