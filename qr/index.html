@@ -1,45 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Redirecting</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Anti cache -->
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: url("uav-ui.jpg") no-repeat center top;
-      background-size: cover;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                   Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    /* HANYA UNTUK PROGRESS BAR */
-    .progress-wrapper {
-      position: absolute;
-      top: 180px;   /* ATUR POSISI BAR (NAIK TURUN) */
-      left: 50%;
-      transform: translateX(-50%);
-      width: 70%;
-      max-width: 320px;
-    }
-
-    .progress {
-      width: 100%;
-      height: 8px;
-      background: rgba(177, 58, 62, 0.25);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .bar {
-      width: 0%;
-      height: 100%;
-      background: #b13a3e;
-      animation: load
+  <script>
+    // langsung lempar ke UI baru (anti cache)
+    window.location.replace("ui.html?v=" + Date.now());
+  </script>
+</head>
+<body></body>
+</html>
