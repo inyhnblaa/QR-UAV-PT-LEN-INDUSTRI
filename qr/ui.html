@@ -1,32 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Redirecting</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-
- <style>
+<style>
   body {
     margin: 0;
     height: 100vh;
+    background: #fdf4f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    /* DEFAULT: PORTRAIT */
-    background: url("uav-ui-portrait.jpg") no-repeat center top;
-    background-size: cover;
+  /* FRAME GAMBAR */
+  .frame {
+    position: relative;
+    width: 100%;
+    max-width: 430px;          /* HP portrait */
+    aspect-ratio: 9 / 16;
+    background: url("uav-ui-portrait.jpg") no-repeat center center;
+    background-size: contain;
   }
 
   /* PROGRESS BAR */
   .progress-wrapper {
     position: absolute;
-    top: 180px;
+    top: 22%;                  /* DI BAWAH TEKS */
     left: 50%;
     transform: translateX(-50%);
     width: 70%;
-    max-width: 320px;
   }
 
   .progress {
@@ -48,27 +46,29 @@
     to { width: 100%; }
   }
 
-  /* ===== LANDSCAPE ===== */
+  /* ===== LANDSCAPE (16:9) ===== */
   @media screen and (orientation: landscape) {
-    body {
+    .frame {
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
       background: url("uav-ui-landscape.jpg") no-repeat center center;
-      background-size: cover;
+      background-size: contain;
     }
 
     .progress-wrapper {
-      top: auto;
-      bottom: 40px;
+      top: 24%;     /* tetap di bawah teks */
       width: 40%;
-      max-width: 420px;
     }
   }
 </style>
-</head>
 
 <body>
-  <div class="progress-wrapper">
-    <div class="progress">
-      <div class="bar"></div>
+  <div class="frame">
+    <div class="progress-wrapper">
+      <div class="progress">
+        <div class="bar"></div>
+      </div>
     </div>
   </div>
 
@@ -78,4 +78,3 @@
     }, 3000);
   </script>
 </body>
-</html>
