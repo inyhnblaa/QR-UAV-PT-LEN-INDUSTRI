@@ -44,6 +44,20 @@
     @keyframes load {
       to { width: 100%; }
     }
+    /* ===== LANDSCAPE MODE ===== */
+@media screen and (orientation: landscape) {
+  body {
+    background-position: center center;
+  }
+
+  .progress-wrapper {
+    top: auto;
+    bottom: 40px;       /* pindah ke bawah */
+    width: 50%;
+    max-width: 420px;
+  }
+}
+
   </style>
 </head>
 
