@@ -5,79 +5,84 @@
   <title>Redirecting</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Anti cache -->
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 
- <style>
-<style>
-  body {
-    margin: 0;
-    height: 100vh;
-    background: #fdf4f1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-    /* DEFAULT: PORTRAIT */
-    background: url("uav-ui-portrait.jpg") no-repeat center top;
-    background-size: cover;
-  /* FRAME GAMBAR */
-  .frame {
-    position: relative;
-    width: 100%;
-    max-width: 430px;          /* HP portrait */
-    aspect-ratio: 9 / 16;
-    background: url("uav-ui-portrait.jpg") no-repeat center center;
-    background-size: contain;
-  }
-
-  /* PROGRESS BAR */
-  .progress-wrapper {
-    position: absolute;
-    top: 180px;
-    top: 22%;                  /* DI BAWAH TEKS */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70%;
-    max-width: 320px;
-  }
-
-  .progress {
-@@ -48,27 +46,29 @@
-    to { width: 100%; }
-  }
-
-  /* ===== LANDSCAPE ===== */
-  /* ===== LANDSCAPE (16:9) ===== */
-  @media screen and (orientation: landscape) {
+  <style>
+    /* ===== BASE ===== */
     body {
+      margin: 0;
+      height: 100vh;
+      background: #fdf4f1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===== FRAME PORTRAIT (9:16) ===== */
     .frame {
-      max-width: 100%;
-      height: auto;
-      aspect-ratio: 16 / 9;
-      background: url("uav-ui-landscape.jpg") no-repeat center center;
-      background-size: cover;
+      position: relative;
+      height: 100vh;
+      aspect-ratio: 9 / 16;
+      max-width: 100vw;
+
+      background: url("uav-ui-portrait.jpg") no-repeat center center;
       background-size: contain;
     }
 
+    /* ===== PROGRESS BAR ===== */
     .progress-wrapper {
-      top: auto;
-      bottom: 40px;
-      top: 24%;     /* tetap di bawah teks */
-      width: 40%;
-      max-width: 420px;
+      position: absolute;
+      top: 22%;              /* di bawah teks (Canva) */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
     }
-  }
-</style>
+
+    .progress {
+      width: 100%;
+      height: 8px;
+      background: rgba(177, 58, 62, 0.25);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .bar {
+      width: 0%;
+      height: 100%;
+      background: #b13a3e;
+      animation: load 3s linear forwards;
+    }
+
+    @keyframes load {
+      to { width: 100%; }
+    }
+
+    /* ===== LANDSCAPE (16:9) ===== */
+    @media screen and (orientation: landscape) {
+      .frame {
+        width: 100vw;
+        height: auto;
+        aspect-ratio: 16 / 9;
+
+        background: url("uav-ui-landscape.jpg") no-repeat center center;
+        background-size: contain;
+      }
+
+      .progress-wrapper {
+        top: 20%;
+        width: 40%;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <div class="progress-wrapper">
-    <div class="progress">
-      <div class="bar"></div>
+  <!-- FULL UI GAMBAR -->
   <div class="frame">
+    <!-- PROGRESS BAR -->
     <div class="progress-wrapper">
       <div class="progress">
         <div class="bar"></div>
@@ -85,7 +90,10 @@
     </div>
   </div>
 
-@@ -78,4 +78,3 @@
+  <!-- REDIRECT -->
+  <script>
+    setTimeout(() => {
+      window.location.href = "go.html?t=" + Date.now();
     }, 3000);
   </script>
 </body>
