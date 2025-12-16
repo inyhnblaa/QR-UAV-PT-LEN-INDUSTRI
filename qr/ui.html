@@ -10,8 +10,13 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 
+  <!-- Google Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    /* ===== BASE + SAFE AREA IPHONE ===== */
+    /* ===== BASE + SAFE AREA ===== */
     body {
       margin: 0;
       height: 100vh;
@@ -24,27 +29,23 @@
       padding-bottom: env(safe-area-inset-bottom);
       padding-left: env(safe-area-inset-left);
       padding-right: env(safe-area-inset-right);
+
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
-    /* ===== FADE IN & OUT ===== */
+    /* ===== FADE IN / OUT ===== */
     .fade {
       opacity: 0;
       animation: fadeIn 0.6s ease-out forwards;
     }
-
     .fade-out {
       animation: fadeOut 0.4s ease-in forwards;
     }
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes fadeOut { to { opacity: 0; } }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeOut {
-      to { opacity: 0; }
-    }
-
-    /* ===== FRAME PORTRAIT (9:16) ===== */
+    /* ===== FRAME (PORTRAIT DEFAULT) ===== */
     .frame {
       position: relative;
       height: 100vh;
@@ -55,10 +56,33 @@
       background-size: contain;
     }
 
+    /* ===== TEXT (FROM CODE, STABLE) ===== */
+    .text {
+      position: absolute;
+      top: 18%;
+      width: 100%;
+      text-align: center;
+      color: #b13a3e;
+      pointer-events: none;
+    }
+
+    .title {
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      font-weight: 400;
+      opacity: 0.9;
+    }
+
     /* ===== PROGRESS BAR ===== */
     .progress-wrapper {
       position: absolute;
-      top: 25%;               /* PUNYA KAMU */
+      top: 26%;
       left: 50%;
       transform: translateX(-50%);
       width: 70%;
@@ -89,13 +113,16 @@
         width: 100vw;
         height: auto;
         aspect-ratio: 16 / 9;
-
         background: url("uav-ui-landscape.jpg") no-repeat center center;
         background-size: contain;
       }
 
+      .text {
+        top: 16%;
+      }
+
       .progress-wrapper {
-        top: 20%;             /* PUNYA KAMU */
+        top: 22%;
         width: 40%;
       }
     }
@@ -103,35 +130,46 @@
 </head>
 
 <body>
-  <!-- FULL UI -->
   <div class="frame fade" id="ui">
+
+    <!-- TEXT FROM CODE -->
+    <div class="text">
+      <div class="title">Hold on!</div>
+      <div class="subtitle">
+        You’re being redirected to the UAV video…
+      </div>
+    </div>
+
+    <!-- PROGRESS BAR -->
     <div class="progress-wrapper">
       <div class="progress">
         <div class="bar" id="bar"></div>
       </div>
     </div>
+
   </div>
 
   <script>
-    /* ===== KONFIG ===== */
-    const DURATION = 3000; // ms (sinkron bar & redirect)
+    /* ===== CONFIG ===== */
+    const DURATION = 3000; // ms
     const REDIRECT_URL = "go.html";
 
-    /* ===== PRELOAD IMAGE (2) ===== */
+    /* ===== PRELOAD IMAGES ===== */
     ["uav-ui-portrait.jpg", "uav-ui-landscape.jpg"].forEach(src => {
       const img = new Image();
       img.src = src;
     });
 
-    /* ===== SYNC PROGRESS BAR (3) ===== */
-    const bar = document.getElementById("bar");
-    bar.style.animationDuration = DURATION + "ms";
+    /* ===== SYNC PROGRESS BAR ===== */
+    document.getElementById("bar").style.animationDuration =
+      DURATION + "ms";
 
-    /* ===== FADE OUT + REDIRECT (1) ===== */
+    /* ===== FADE-OUT BEFORE REDIRECT ===== */
     setTimeout(() => {
       document.getElementById("ui").classList.add("fade-out");
     }, DURATION - 400);
 
+    /* ===== REDIRECT ===== */
     setTimeout(() => {
       window.location.href = REDIRECT_URL + "?t=" + Date.now();
     }, DURATION);
