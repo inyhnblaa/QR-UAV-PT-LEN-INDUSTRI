@@ -9,56 +9,60 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 
-  <style>
+ <style>
+  body {
+    margin: 0;
+    height: 100vh;
+
+    /* DEFAULT: PORTRAIT */
+    background: url("uav-ui-portrait.jpg") no-repeat center top;
+    background-size: cover;
+  }
+
+  /* PROGRESS BAR */
+  .progress-wrapper {
+    position: absolute;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    max-width: 320px;
+  }
+
+  .progress {
+    width: 100%;
+    height: 8px;
+    background: rgba(177, 58, 62, 0.25);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .bar {
+    width: 0%;
+    height: 100%;
+    background: #b13a3e;
+    animation: load 3s linear forwards;
+  }
+
+  @keyframes load {
+    to { width: 100%; }
+  }
+
+  /* ===== LANDSCAPE ===== */
+  @media screen and (orientation: landscape) {
     body {
-      margin: 0;
-      height: 100vh;
-      background: url("uav-ui.jpg") no-repeat center top;
+      background: url("uav-ui-landscape.jpg") no-repeat center center;
       background-size: cover;
     }
 
     .progress-wrapper {
-      position: absolute;
-      top: 180px; /* SESUAI DESAIN */
-      left: 50%;
-      transform: translateX(-50%);
-      width: 70%;
-      max-width: 320px;
+      top: auto;
+      bottom: 40px;
+      width: 40%;
+      max-width: 420px;
     }
-
-    .progress {
-      width: 100%;
-      height: 8px;
-      background: rgba(177, 58, 62, 0.25);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .bar {
-      width: 0%;
-      height: 100%;
-      background: #b13a3e;
-      animation: load 3s linear forwards;
-    }
-
-    @keyframes load {
-      to { width: 100%; }
-    }
-    /* ===== LANDSCAPE MODE ===== */
-@media screen and (orientation: landscape) {
-  body {
-    background-position: center center;
   }
-
-  .progress-wrapper {
-    top: auto;
-    bottom: 40px;       /* pindah ke bawah */
-    width: 50%;
-    max-width: 420px;
-  }
-}
-
-  </style>
+</style>
 </head>
 
 <body>
