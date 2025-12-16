@@ -74,14 +74,6 @@
       color: #9ca3af;
     }
   </style>
-
-  <script>
-    setTimeout(function () {
-      window.location.replace(
-        "https://www.youtube.com/watch?v=ID_VIDEO_BARU"
-      );
-    }, 2000);
-  </script>
 </head>
 
 <body>
@@ -92,5 +84,15 @@
     <div class="loader"></div>
     <div class="footer">PT LEN Industri</div>
   </div>
+
+  <script>
+    // pastikan UI dirender dulu
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        window.location.href =
+          "https://www.youtube.com/watch?v=ID_VIDEO_BARU";
+      }, 2500); // ⬅️ 2.5 detik (PASTI KELIHATAN)
+    });
+  </script>
 </body>
 </html>
