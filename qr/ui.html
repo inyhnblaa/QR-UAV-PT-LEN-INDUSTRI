@@ -56,33 +56,35 @@
       background-size: contain;
     }
 
-    /* ===== TEXT (FROM CODE, STABLE) ===== */
-    .text {
+    /* ===== TEXT FROM CODE (PIXEL-PERFECT CANVA) ===== */
+    .title {
       position: absolute;
-      top: 18%;
+      top: 13.0%;            /* Portrait: 250 / 1920 */
       width: 100%;
       text-align: center;
       color: #b13a3e;
-      pointer-events: none;
-    }
-
-    .title {
       font-size: 34px;
       font-weight: 600;
       letter-spacing: -0.2px;
-      margin-bottom: 6px;
+      pointer-events: none;
     }
 
     .subtitle {
+      position: absolute;
+      top: 16.9%;            /* Portrait: 324 / 1920 */
+      width: 100%;
+      text-align: center;
+      color: #b13a3e;
       font-size: 15px;
       font-weight: 400;
       opacity: 0.9;
+      pointer-events: none;
     }
 
     /* ===== PROGRESS BAR ===== */
     .progress-wrapper {
       position: absolute;
-      top: 26%;
+      top: 23.5%;            /* bar kamu (boleh fine-tune) */
       left: 50%;
       transform: translateX(-50%);
       width: 70%;
@@ -117,12 +119,16 @@
         background-size: contain;
       }
 
-      .text {
-        top: 16%;
+      .title {
+        top: 6.6%;           /* Landscape: 71 / 1080 */
+      }
+
+      .subtitle {
+        top: 11.6%;          /* Landscape: 125 / 1080 */
       }
 
       .progress-wrapper {
-        top: 22%;
+        top: 18.5%;
         width: 40%;
       }
     }
@@ -133,11 +139,9 @@
   <div class="frame fade" id="ui">
 
     <!-- TEXT FROM CODE -->
-    <div class="text">
-      <div class="title">Hold on!</div>
-      <div class="subtitle">
-        You’re being redirected to the UAV video…
-      </div>
+    <div class="title">Hold on!</div>
+    <div class="subtitle">
+      You’re being redirected to the UAV video…
     </div>
 
     <!-- PROGRESS BAR -->
@@ -150,26 +154,25 @@
   </div>
 
   <script>
-    /* ===== CONFIG ===== */
-    const DURATION = 3000; // ms
+    const DURATION = 3000;
     const REDIRECT_URL = "go.html";
 
-    /* ===== PRELOAD IMAGES ===== */
+    /* Preload images */
     ["uav-ui-portrait.jpg", "uav-ui-landscape.jpg"].forEach(src => {
       const img = new Image();
       img.src = src;
     });
 
-    /* ===== SYNC PROGRESS BAR ===== */
+    /* Sync progress duration */
     document.getElementById("bar").style.animationDuration =
       DURATION + "ms";
 
-    /* ===== FADE-OUT BEFORE REDIRECT ===== */
+    /* Fade-out before redirect */
     setTimeout(() => {
       document.getElementById("ui").classList.add("fade-out");
     }, DURATION - 400);
 
-    /* ===== REDIRECT ===== */
+    /* Redirect */
     setTimeout(() => {
       window.location.href = REDIRECT_URL + "?t=" + Date.now();
     }, DURATION);
