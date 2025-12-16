@@ -61,42 +61,21 @@
 
     /* ===== LANDSCAPE (16:9) ===== */
    @media screen and (orientation: landscape) {
-  body {
-    align-items: center;
-    justify-content: center;
-  }
-
   .frame {
-    height: 100vh;          /* ikuti tinggi layar */
+    width: 100vw;
+    height: auto;
     aspect-ratio: 16 / 9;
-    max-width: 100vw;
 
     background: url("uav-ui-landscape.jpg") no-repeat center center;
     background-size: contain;
-
-    /* SAFE AREA AGAR LOGO TIDAK KEJEPIT */
-    padding-top: 2vh;
-    padding-bottom: 2vh;
-    box-sizing: border-box;
   }
 
   .progress-wrapper {
-    top: 20%;               /* tetap di bawah teks */
+    top: 20%;
     width: 40%;
   }
 }
 
-
-<body>
-  <!-- FULL UI GAMBAR -->
-  <div class="frame">
-    <!-- PROGRESS BAR -->
-    <div class="progress-wrapper">
-      <div class="progress">
-        <div class="bar"></div>
-      </div>
-    </div>
-  </div>
 
   <!-- REDIRECT -->
   <script>
