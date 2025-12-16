@@ -3,9 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Redirecting...</title>
-  <meta http-equiv="refresh" content="0; url=https://www.youtube.com/watch?v=CQDRBAgVfTA"> 
+
+  <!-- Anti cache Android -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <script>
+    const url = "https://www.youtube.com/watch?v=ivdPyFUPbAk";
+    window.location.replace(url + "?t=" + Date.now());
+  </script>
 </head>
 <body>
-  <p>Mengalihkan ke video UAV...</p>
+  <p>Mengalihkan ke video UAV </p>
 </body>
 </html>
+
