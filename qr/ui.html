@@ -26,14 +26,22 @@
       padding-right: env(safe-area-inset-right);
     }
 
-    /* ===== FADE IN ===== */
+    /* ===== FADE IN & OUT ===== */
     .fade {
       opacity: 0;
       animation: fadeIn 0.6s ease-out forwards;
     }
 
+    .fade-out {
+      animation: fadeOut 0.4s ease-in forwards;
+    }
+
     @keyframes fadeIn {
       to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; }
     }
 
     /* ===== FRAME PORTRAIT (9:16) ===== */
@@ -47,10 +55,10 @@
       background-size: contain;
     }
 
-    /* ===== PROGRESS BAR (HASIL HITUNG CANVA) ===== */
+    /* ===== PROGRESS BAR ===== */
     .progress-wrapper {
       position: absolute;
-      top: 25%;          /* PORTRAIT: 430 / 1920 */
+      top: 25%;               /* PUNYA KAMU */
       left: 50%;
       transform: translateX(-50%);
       width: 70%;
@@ -68,7 +76,7 @@
       width: 0%;
       height: 100%;
       background: #b13a3e;
-      animation: load 3s linear forwards;
+      animation: load linear forwards;
     }
 
     @keyframes load {
@@ -87,7 +95,7 @@
       }
 
       .progress-wrapper {
-        top: 20%;        /* LANDSCAPE: 188 / 1080 */
+        top: 20%;             /* PUNYA KAMU */
         width: 40%;
       }
     }
@@ -96,19 +104,37 @@
 
 <body>
   <!-- FULL UI -->
-  <div class="frame fade">
+  <div class="frame fade" id="ui">
     <div class="progress-wrapper">
       <div class="progress">
-        <div class="bar"></div>
+        <div class="bar" id="bar"></div>
       </div>
     </div>
   </div>
 
-  <!-- REDIRECT -->
   <script>
+    /* ===== KONFIG ===== */
+    const DURATION = 3000; // ms (sinkron bar & redirect)
+    const REDIRECT_URL = "go.html";
+
+    /* ===== PRELOAD IMAGE (2) ===== */
+    ["uav-ui-portrait.jpg", "uav-ui-landscape.jpg"].forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    /* ===== SYNC PROGRESS BAR (3) ===== */
+    const bar = document.getElementById("bar");
+    bar.style.animationDuration = DURATION + "ms";
+
+    /* ===== FADE OUT + REDIRECT (1) ===== */
     setTimeout(() => {
-      window.location.href = "go.html?t=" + Date.now();
-    }, 3000);
+      document.getElementById("ui").classList.add("fade-out");
+    }, DURATION - 400);
+
+    setTimeout(() => {
+      window.location.href = REDIRECT_URL + "?t=" + Date.now();
+    }, DURATION);
   </script>
 </body>
 </html>
