@@ -11,7 +11,7 @@
   <meta http-equiv="Expires" content="0">
 
   <style>
-    /* ===== BASE ===== */
+    /* ===== BASE + SAFE AREA IPHONE ===== */
     body {
       margin: 0;
       height: 100vh;
@@ -19,6 +19,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+
+    /* ===== FADE IN ===== */
+    .fade {
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
 
     /* ===== FRAME PORTRAIT (9:16) ===== */
@@ -32,10 +47,10 @@
       background-size: contain;
     }
 
-    /* ===== PROGRESS BAR ===== */
+    /* ===== PROGRESS BAR (HASIL HITUNG CANVA) ===== */
     .progress-wrapper {
       position: absolute;
-      top: 22%;              /* di bawah teks (Canva) */
+      top: 22.4%;          /* PORTRAIT: 430 / 1920 */
       left: 50%;
       transform: translateX(-50%);
       width: 70%;
@@ -72,7 +87,7 @@
       }
 
       .progress-wrapper {
-        top: 20%;
+        top: 17.5%;        /* LANDSCAPE: 188 / 1080 */
         width: 40%;
       }
     }
@@ -80,9 +95,8 @@
 </head>
 
 <body>
-  <!-- FULL UI GAMBAR -->
-  <div class="frame">
-    <!-- PROGRESS BAR -->
+  <!-- FULL UI -->
+  <div class="frame fade">
     <div class="progress-wrapper">
       <div class="progress">
         <div class="bar"></div>
